@@ -1,15 +1,10 @@
-<div class="ui menu">
+<div class="ui menu inverted">
   <div class="header item">
-    Room Selector
+    Geekwise Rooms
   </div>
-  <a class="item">
-    About Us
-  </a>
-  <a class="item">
-    Jobs
-  </a>
-  <a class="item">
-    Locations
+  <a class="item"
+  *ngFor="let room of roomNames">
+    {{room}}
   </a>
 </div>
 

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 @Component({
   selector : "gw-login",
-  templateUrl : "./login.html"
+  templateUrl : "./login.component.html"
 })
 
 export class LoginComponent { }

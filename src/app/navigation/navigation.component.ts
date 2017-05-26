@@ -6,7 +6,7 @@ interface RoomInterface {
 
 @Component({
   selector : "gw-navigation",
-  templateUrl : "./navigation.html"
+  templateUrl : "./navigation.component.html"
 })
 
 export class NavigationComponent {

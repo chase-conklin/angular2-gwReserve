@@ -3,8 +3,9 @@
     Geekwise Rooms
   </div>
   <a class="item"
-  *ngFor="let room of roomNames">
-    {{room}} | {{roomNames.indexOf(room)}}
+  *ngFor="let room of roomNames"
+  routerLink="rooms/{{room.toLowerCase()}}/list">
+    {{room}}
   </a>
 </div>
 

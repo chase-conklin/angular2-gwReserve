@@ -3,6 +3,8 @@ import { RouterModule, Routes } from "@angular/router";
 
 import {ExerciseComponent} from "./exercise/exercise.component";
 import {LoginComponent} from "./login/login.component";
+import {LoginGuard} from "./services/login-guard.service";
+import {DirtyFormGuard} from "./services/dirty-form-guard.service";
 
 const routes: Routes = [
   {
@@ -22,7 +24,11 @@ const routes: Routes = [
 
 @NgModule({
   imports : [ RouterModule.forRoot(routes) ],
-  exports : [ RouterModule ]
+  exports : [ RouterModule ],
+  providers: [
+    LoginGuard,
+    DirtyFormGuard
+  ]
 })
 
 export class AppRoutingModule { }

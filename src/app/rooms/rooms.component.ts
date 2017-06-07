@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/do";
+import {RoomsService} from "../services/rooms.service";
+
 @Component({
   selector : "gw-rooms",
   templateUrl : "./rooms.component.html"
@@ -9,9 +13,20 @@ import { ActivatedRoute } from "@angular/router";
 export class RoomsComponent implements OnInit {
   public id: number;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
-    this.activatedRoute;
+    // get snapshot
+    // this.id = this.route.snapshot.params["id"];
+
+    this.route.params
+      .map(params => {
+        return params["id"];
+      })
+      .subscribe(id => {
+        this.id = id;
+      });
   }
 }

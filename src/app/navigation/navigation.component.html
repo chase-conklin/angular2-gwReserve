@@ -3,9 +3,16 @@
     Geekwise Rooms
   </div>
   <a class="item"
-  *ngFor="let room of roomNames"
-  routerLink="rooms/{{room.toLowerCase()}}/list">
-    {{room}}
+  *ngFor="let roomKey of navigationService.fetchNavigationItems()"
+  routerLink="{{roomKey.url}}/list">
+    {{roomKey.title}}
   </a>
+  <div class="right menu">
+    <div class="item" *ngIf="loginService.getLoggedInUser()">
+      <img class="ui avatar image" [src]="loginService.getLoggedInUser().photoURL"/>
+      {{loginService.getLoggedInUser().displayName}}</div>
+    <a class="item" (click)="loginService.login()">Login</a>
+    <a class="item" (click)="loginService.logout()">Logout</a>
+  </div>
 </div>
 

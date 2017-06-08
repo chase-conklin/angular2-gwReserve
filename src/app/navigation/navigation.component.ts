@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {RoomsService} from "./../services/rooms.service";
+import {RoomsService} from "../services/rooms.service";
 import {NavigationService} from "../services/navigation.service";
 import {LoginService} from "../services/login.service";
 
@@ -12,7 +12,7 @@ interface RoomInterface {
   templateUrl : "./navigation.component.html"
 })
 
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
 
   constructor(
     public  navigationService: NavigationService,

@@ -21,8 +21,13 @@ const childRoutes: Route[] = [
 export const routes: Routes = [
   {
     path: "rooms/:id",
+    redirectTo: "rooms/:id/list",
+    pathMatch: "full"
+  },
+  {
+    path: "rooms/:id",
     component: RoomsComponent,
-    canActivate: [LoginGuard],
+    canActivateChild: [LoginGuard],
     children: childRoutes
 
   }

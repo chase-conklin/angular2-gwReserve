@@ -4,7 +4,8 @@
   </div>
   <a class="item"
   *ngFor="let roomKey of navigationService.fetchNavigationItems()"
-  routerLink="{{roomKey.url}}/list">
+  [routerLink]="[roomKey.url]"
+  routerLinkActive="active">
     {{roomKey.title}}
   </a>
   <div class="right menu">

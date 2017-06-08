@@ -11,7 +11,7 @@ import {RoomsService} from "../services/rooms.service";
 })
 
 export class RoomsComponent implements OnInit {
-  public id: number;
+  public id: string;
 
   constructor(
     private route: ActivatedRoute,

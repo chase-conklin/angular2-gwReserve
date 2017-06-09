@@ -12,6 +12,7 @@ import { RoomsModule } from "./rooms/rooms.module";
 import {RoomsService} from "./services/rooms.service";
 import {NavigationService} from "./services/navigation.service";
 import {LoginService} from "./services/login.service";
+import { ExerciseChildComponent } from './exercise/exercise-child/exercise-child.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {LoginService} from "./services/login.service";
   declarations : [
     AppComponent,
     NavigationComponent,
-    mainAppRoutedComponents
+    mainAppRoutedComponents,
+    ExerciseChildComponent
   ],
   bootstrap    : [
     AppComponent

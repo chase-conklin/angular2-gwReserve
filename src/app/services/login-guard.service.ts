@@ -17,7 +17,7 @@ export class LoginGuard implements CanActivateChild {
       return true;
     }
 
-    this.router.navigate([""], {fragment: "login_needed"});
+    this.router.navigate(["login"], {fragment: "login_needed"});
     return false;
   }
 }

@@ -23,7 +23,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
 
     const welcomeItem = {
-      title : "Welcome",
+      title : "Exercises",
       url   : "exercises"
     };
 

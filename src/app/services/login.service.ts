@@ -22,8 +22,8 @@ export class LoginService {
   public login() {
     // perform a fake, synchronous login for the time being
     this.loggedInUser = {
-      displayName: "Josh R. Dunlavy",
-      photoURL: "https://avatars3.githubusercontent.com/u/6346817?v=3&s=460"
+      displayName: "Chase M. Conklin",
+      photoURL: "https://avatars1.githubusercontent.com/u/25158726?v=3&s=460"
     };
   }
 

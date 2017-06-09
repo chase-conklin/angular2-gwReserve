@@ -2,8 +2,10 @@
   <pre>
     I'm the parent...
 
-    Below is the child
-    <app-exercise-child></app-exercise-child>
+    Here is my record binding:  {{record}}
+
+    Below is the child...
+    <app-exercise-child [record] = "record" (onEditRecord)="onChildEdited($event)"></app-exercise-child>
   </pre>
 </div>
 

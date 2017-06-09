@@ -1,3 +1,59 @@
+<form novalidate
+      #myForm="ngForm"
+      class="ui form"
+      (ngSubmit)="onRoomSubmission(myForm)"
+      [ngClass]="{ 'error' : myForm.invalid && myForm.submitted }"
+      >
+    <div class="ui large form">
+      <div class="two fields">
+        <div class="field">
+          <label>Reserve For:</label>
+          <select name="reserveReasons"
+                  required
+                  [ngModel]="reserveReasons">
+            <option *ngFor= "let reason of reasons" [value]="reason">{{reason}}</option>
+          </select>
+          <div *ngIf = "myForm.controls.reserveReasons?.errors && myForm.submitted">There is an error in this form</div>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Start Time:</label>
+          <input name="startTime" type="time"  required>
+        </div>
+        <div class="field">
+          <label>End Time:</label>
+          <input name="endTime" type="time"  required>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Person to Contact:</label>
+          <input name="email1" type="email"  required email>
+        </div>
+        <div class="field">
+          <label>Person to Contact (confirm):</label>
+          <input name="email2" type="email">
+        </div>
+      </div>
+      <div class="inline field">
+        <label>I agree to be clean and good to the room:</label>
+        <input name="isAgreed" required type="checkbox">
+      </div>
+      <div class="ui error message">
+        <div class="header">This entry has a few errors</div>
+
+        <!--<ul ng-repeat="(key, errors) in myForm.$error track by $index">
+                  <li ng-repeat="error in errors">{{ key }} | {{ error.$name }}</li>
+              </ul>-->
+      </div>
+      <div class="fields">
+        <div class="field">
+          <button type="submit" class="ui big positive submit button">Submit</button>
+        </div>
+      </div>
+    </div>
+</form>
 <div>
   Room Form: Go to list <a routerLink="../list">here</a>
 </div>

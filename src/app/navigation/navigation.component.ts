@@ -22,6 +22,13 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
 
+    const welcomeItem = {
+      title : "Welcome",
+      url   : "exercises"
+    };
+
+    this.navigationService.addNavigationItem(welcomeItem);
+
     this.roomService.fetchRoomsFromDB().then(rooms => {
       for (let roomKey in rooms) {
         const roomItem = {

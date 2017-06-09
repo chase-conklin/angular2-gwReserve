@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 import {ExerciseComponent} from "./exercise/exercise.component";
 import {LoginComponent} from "./login/login.component";
+import {WelcomeComponent} from "./welcome/welcome.component"
 import {LoginGuard} from "./services/login-guard.service";
 import {DirtyFormGuard} from "./services/dirty-form-guard.service";
 
@@ -12,8 +13,12 @@ const routes: Routes = [
     component: ExerciseComponent
   },
   {
-    path: "",
+    path: "login",
     component: LoginComponent
+  },
+  {
+    path: "",
+    component: WelcomeComponent
   },
   {
     path: "**",

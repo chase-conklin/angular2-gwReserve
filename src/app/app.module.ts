@@ -8,11 +8,12 @@ import { AppRoutingModule, mainAppRoutedComponents } from "./app.routing.module"
 
 import { AppComponent } from "./app.component";
 import { NavigationComponent } from "./navigation/navigation.component";
+import { ExerciseChildComponent } from "./exercise/exercise-child/exercise-child.component";
 import { RoomsModule } from "./rooms/rooms.module";
 import {RoomsService} from "./services/rooms.service";
 import {NavigationService} from "./services/navigation.service";
 import {LoginService} from "./services/login.service";
-import { ExerciseChildComponent } from './exercise/exercise-child/exercise-child.component';
+import {WelcomeComponent} from "./welcome/welcome.component";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ExerciseChildComponent } from './exercise/exercise-child/exercise-child
   declarations : [
     AppComponent,
     NavigationComponent,
+    WelcomeComponent,
     mainAppRoutedComponents,
     ExerciseChildComponent
   ],

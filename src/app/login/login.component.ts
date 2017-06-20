@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
 import { LoginService } from "./../services/login.service";
 
 @Component({
@@ -8,20 +8,34 @@ import { LoginService } from "./../services/login.service";
 })
 
 export class LoginComponent implements OnInit {
-  public _loggedInUser;
+  public loggedInUser;
   public loginNeeded: boolean;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private loginService: LoginService
   ) { }
 
   ngOnInit() {
     this.loginService.getLoggedInUser().subscribe({
-      next: loggedInUser => this._loggedInUser = loggedInUser
+      next: loggedInUser => {
+        this.loggedInUser = loggedInUser;
+        this._refreshRoute();
+      }
     });
+  }
 
-    this.route.fragment.subscribe(fragment => this.loginNeeded = fragment === "login_needed");
+  private _refreshRoute() {
+    const navigateToUrlCommand = [ this.router.url.startsWith("/room/") ? "" : this.router.url ];
+    this.router.navigate(navigateToUrlCommand);
+  }
+
+  login() {
+    this.loginService.login();
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 
 }

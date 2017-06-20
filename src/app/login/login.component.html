@@ -1,4 +1,8 @@
-<div *ngIf="loginNeeded">You Need to Login to View Rooms</div>
-<div>Login</div>
-<div>Logout</div>
+<div class="right menu">
+  <div class="item" *ngIf="loggedInUser">
+    <img class="ui avatar image" [src]="loggedInUser?.photoURL"/>
+    {{loggedInUser?.displayName}}</div>
+  <a class="item" (click)="loginService.login()">Login</a>
+  <a class="item" (click)="loginService.logout()">Logout</a>
+</div>
 

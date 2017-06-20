@@ -4,7 +4,11 @@ import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 
+import { AngularFireModule } from "angularfire2";
+
 import { AppRoutingModule, mainAppRoutedComponents } from "./app.routing.module";
+
+import { environment } from "./../environments/environment";
 
 import { AppComponent } from "./app.component";
 import { NavigationComponent } from "./navigation/navigation.component";

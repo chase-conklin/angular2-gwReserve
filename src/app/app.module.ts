@@ -5,6 +5,7 @@ import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 
 import { AngularFireModule } from "angularfire2";
+import { AngularFireAuthModule } from "angularfire2/auth";
 
 import { AppRoutingModule, mainAppRoutedComponents } from "./app.routing.module";
 
@@ -25,6 +26,8 @@ import {WelcomeComponent} from "./welcome/welcome.component";
     BrowserModule,
     FormsModule,
     HttpModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     RoomsModule,
     AppRoutingModule,
   ],

@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import { LoginService } from "./../services/login.service";
 
 @Component({
   selector : "gw-login",
@@ -7,13 +8,19 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class LoginComponent implements OnInit {
-  public loggedInUser;
+  public _loggedInUser;
   public loginNeeded: boolean;
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit() {
+    this.loginService.getLoggedInUser().subscribe({
+      next: loggedInUser => this._loggedInUser = loggedInUser
+    });
+
     this.route.fragment.subscribe(fragment => this.loginNeeded = fragment === "login_needed");
   }
 

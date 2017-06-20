@@ -1,24 +1,28 @@
 import { Injectable } from "@angular/core";
+
+import { Observable } from "rxjs/Observable";
 import { AngularFireAuth } from "angularfire2/auth";
+import * as firebase from "firebase/app";
 
 
 @Injectable()
 export class LoginService {
+  private _loggedInUser: Observable<firebase.User>;
 
-  constructor() {
-    this.loggedInUser = null;
+  constructor(private _authentication: AngularFireAuth) {
+    this._loggedInUser = _authentication.authState;
+  }
+
+  public getLoggedInUser(): Observable<firebase.User> {
+    return this._loggedInUser;
   }
 
 
   public login() {
-    // perform a fake, synchronous login for the time being
-    this.loggedInUser = {
-      displayName: "Chase M. Conklin",
-      photoURL: "https://avatars1.githubusercontent.com/u/25158726?v=3&s=460"
-    };
+    this._authentication.auth.signInWithPopup(new firebase.auth.GithubAuthProvider());
   }
 
   public logout() {
-    this.loggedInUser = null;
+    this._authentication.auth.signOut();
   }
 }

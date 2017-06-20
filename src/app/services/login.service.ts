@@ -1,24 +1,14 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 
-export interface IUser {
-  displayName: string;
-  photoURL: string;
-  // permit against excess property checking
-  [propName: string]: any;
-}
 
 @Injectable()
 export class LoginService {
-  private loggedInUser: IUser;
 
   constructor() {
     this.loggedInUser = null;
   }
 
-  public getLoggedInUser(): IUser {
-    return this.loggedInUser;
-  }
 
   public login() {
     // perform a fake, synchronous login for the time being

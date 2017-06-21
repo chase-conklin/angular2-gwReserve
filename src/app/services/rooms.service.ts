@@ -6,7 +6,8 @@ import { LoginService } from "./login.service";
 
 import { IRoom } from "./../interfaces/IRoom";
 
-import "rxjs/add/operator/toPromise";
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/mergeMap";
 
 @Injectable()
 export class RoomsService {
@@ -16,22 +17,20 @@ export class RoomsService {
     private loginService: LoginService
   ) { }
 
-  getRoomById(id): Promise<IRoom> {
+  getRoomById(id): Observable<IRoom> {
     return this.http.get(this.applicationSettings.getFirebaseRestUrl(`rooms/${id}`))
-      .toPromise()
-      .then(response => response.json())
-      .then(room => {
+      .map(response => response.json())
+      .map(room => {
         room.id = id;
 
         return room;
       });
   }
 
-  fetchRoomsFromDB(): Promise<IRoom[]> {
+  fetchRoomsFromDB(): Observable<IRoom[]> {
     return this.http.get(this.applicationSettings.getFirebaseRestUrl("rooms"))
-      .toPromise()
-      .then(response => response.json())
-      .then(response => {
+      .map(response => response.json())
+      .map(response => {
         const rooms: IRoom[] = [];
 
         for (let roomKey in response) {
@@ -45,11 +44,10 @@ export class RoomsService {
       });
   }
 
-  resetRoomsToDB(): Promise<IRoom[]> {
+  resetRoomsToDB(): Observable<IRoom[]> {
     const url = this.applicationSettings.getFirebaseRestUrl("rooms");
-
-    return this.http.delete(url).toPromise()
-      .then(() => {
+    return this.http.delete(url)
+      .do(() => {
         return this.http.put(url, {
           halo: {
             id: "halo",
@@ -59,32 +57,32 @@ export class RoomsService {
           sonic: {
             id: "sonic",
             name: "Sonic",
-            picture: 'sonic.jpg'
+            picture: "sonic.jpg"
           },
           zelda: {
             id: "zelda",
             name: "Zelda",
-            picture: 'zelda.jpg'
+            picture: "zelda.jpg"
           },
           starfox: {
             id: "starfox",
             name: "Star Fox",
-            picture: 'starfox.jpg'
+            picture: "starfox.jpg"
           },
           simcity: {
             id: "simcity",
             name: "Sim City",
-            picture: 'simcity.jpg'
+            picture: "simcity.jpg"
           }
-        }).toPromise;
+        }).subscribe();
       })
-      .then(() => this.fetchRoomsFromDB());
+      .flatMap(() => this.fetchRoomsFromDB());
   }
 
   writeRoomReservation(id, reservation) {
     return this.getRoomById(id)
-      .then(room => {
-        // we get room so some validation could be performed here before we post, though note this doesn't eliminate race conditions
+      .map(room => {
+        // we get room so some validation could be performed here before we post, though note this doesn"t eliminate race conditions
         return this.http.post(this.getRoomReservationsUrl(id, reservation.startTime), reservation);
       });
   }

@@ -25,7 +25,7 @@ export class RoomsListComponent implements OnInit {
       .map(params => params["id"])
       .subscribe(id => {
         this.id = id;
-        this.roomService.getRoomById(id).then(room => {
+        this.roomService.getRoomById(id).subscribe(room => {
           this.room = room;
           this.reservations = this.getReservationsByDay();
         });

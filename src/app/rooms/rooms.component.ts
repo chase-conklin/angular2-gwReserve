@@ -40,13 +40,12 @@ export class RoomsComponent implements OnInit, CanComponentDeactivate {
         this.id = id;
 
         this.roomService.getRoomById(id)
-          .then(room => {
+          .subscribe(room => {
             this.room = room;
 
             // we need to set room picture (which comes from DB as a file name) to our relative path
             this.room.picture = this.applicationSettings.getImagePath(this.room.picture);
-          })
-          .catch(error => alert(error));
+          });
       });
   }
 

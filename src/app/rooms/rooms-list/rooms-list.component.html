@@ -1,3 +1,7 @@
 <div>
-  Room List: Go to form <a routerLink="../form">here</a> for {{id}}
+  <h1 class="ui inverted header">{{ room?.name }}</h1>
+  <div class="ui segment">
+    <button routerLink="../form" class="ui large right floated green button">Make One</button>
+    <p>There are {{ reservations?.length }} reservations today.</p>
+  </div>
 </div>

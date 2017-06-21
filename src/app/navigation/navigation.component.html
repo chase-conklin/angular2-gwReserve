@@ -2,11 +2,12 @@
   <div class="header item">
     Geekwise Rooms
   </div>
-  <a class="item"
-  *ngFor="let roomKey of navigationService.fetchNavigationItems()"
-  [routerLink]="[roomKey.url]"
-  routerLinkActive="active">
-    {{roomKey.title}}
+  <a *ngFor="let navItem of navigationService.getNavigation()"
+     routerLink="{{ navItem.url }}"
+     routerLinkActive="active"
+     ngClass="{{ navItem.color }}"
+     class="item">
+    {{ navItem.title }}
   </a>
   <div class = "right menu">
     <gw-login></gw-login>

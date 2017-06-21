@@ -2,9 +2,9 @@
 
 export class NavigationService {
 
-  public navigationItems: Array<object> = [];
+  public navigationItems= [];
 
-  public fetchNavigationItems() {
+  public getNavigation() {
     return this.navigationItems;
   }
 

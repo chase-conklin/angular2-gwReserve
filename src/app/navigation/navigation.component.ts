@@ -1,11 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+
+import { INavigationItem } from "./../interfaces/INavigation";
+
 import {RoomsService} from "../services/rooms.service";
 import {NavigationService} from "../services/navigation.service";
-import {LoginService} from "../services/login.service";
-
-interface RoomInterface {
-  name: string;
-}
 
 @Component({
   selector : "gw-navigation",
@@ -16,24 +14,25 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     public  navigationService: NavigationService,
-    private roomService: RoomsService,
-    public loginService: LoginService
+    private roomService: RoomsService
   ) { }
 
   ngOnInit() {
 
-    const welcomeItem = {
+    const welcomeItem: INavigationItem = {
       title : "Exercises",
-      url   : "exercises"
+      url   : "exercises",
+      color : "green",
+      orderBy : 30
     };
 
     this.navigationService.addNavigationItem(welcomeItem);
 
-    this.roomService.fetchRoomsFromDB().then(rooms => {
-      for (let roomKey in rooms) {
+    this.roomService.fetchRoomsFromDB().subscribe(rooms => {
+      for (let room in rooms) {
         const roomItem = {
-          title: rooms[roomKey].name,
-          url: `/rooms/${roomKey}`
+          title: rooms[room].name,
+          url: `/rooms/${rooms[room].id}`
         };
 
         this.navigationService.addNavigationItem(roomItem);

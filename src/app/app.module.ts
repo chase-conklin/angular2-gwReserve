@@ -19,6 +19,7 @@ import {RoomsService} from "./services/rooms.service";
 import {NavigationService} from "./services/navigation.service";
 import {LoginService} from "./services/login.service";
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {ApplicationSettings} from "./services/application-settings.service";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {WelcomeComponent} from "./welcome/welcome.component";
     AppComponent
   ],
   providers    : [
+    ApplicationSettings,
     LoginService,
     NavigationService,
     RoomsService

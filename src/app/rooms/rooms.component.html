@@ -1,5 +1,28 @@
-<div>
-  <gw-rooms-header></gw-rooms-header>
-  Room {{id}}
-  <router-outlet></router-outlet>
+<div class="ui room container">
+  <div class="ui inverted active dimmer" *ngIf="isLoading">
+    <div class="ui big loader"></div>
+  </div>
+  <div class="ui padded grid" [ngClass]="{ tranIn : room.picture !== '' }">
+    <div class="row">
+      <div class="six wide column">
+        <img class="ui medium circular centered image" [src]="room.picture">
+      </div>
+      <div class="ten wide column toggleButtons">
+        <div class="ui buttons">
+          <button class="ui big button"
+                  routerLink="./list"
+                  routerLinkActive="green">List</button>
+          <button class="ui big button"
+                  (click)="resetDB($event)">Reset Rooms</button>
+          <button class="ui big button"
+                  routerLink="./form"
+                  routerLinkActive="green">Form</button>
+        </div>
+        <hr />
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>
+
+

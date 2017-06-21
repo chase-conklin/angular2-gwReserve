@@ -14,7 +14,6 @@ export class LoginGuard implements CanActivateChild {
   canActivateChild() {
     return this.loginService.getLoggedInUser().map(
       loggedInUser => {
-        console.log("Login Guard checking loggedInUser: ", loggedInUser);
 
         if (loggedInUser) return true;
 

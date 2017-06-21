@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
-import { IDirtyCanDeactivate } from "./../../services/dirty-form-guard.service";
+import { CanComponentDeactivate } from "./../../services/dirty-form-guard.service";
 
 
 @Component({
@@ -9,7 +9,7 @@ import { IDirtyCanDeactivate } from "./../../services/dirty-form-guard.service";
   templateUrl : "./rooms-form.component.html"
 })
 
-export class RoomsFormComponent implements IDirtyCanDeactivate, OnInit {
+export class RoomsFormComponent implements CanComponentDeactivate, OnInit {
   public reasons: string[];
 
 
@@ -41,7 +41,7 @@ export class RoomsFormComponent implements IDirtyCanDeactivate, OnInit {
     console.log(myForm);
   }
 
-  dirtyCanDeactivate () {
+  canDeactivate () {
     return this.myForm.dirty && !this.myForm.submitted ? confirm("You have unsaved work. Continue?") : true;
   }
 }

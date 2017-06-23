@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
     this.loginService.getLoggedInUser().subscribe({
       next: loggedInUser => {
         this.loggedInUser = loggedInUser;
-        this._refreshRoute();
       }
     });
   }
@@ -36,6 +35,7 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
+    this._refreshRoute();
   }
 
 }

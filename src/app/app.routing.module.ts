@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes, PreloadingStrategy } from "@angular/router";
 
 import {ExerciseComponent} from "./exercise/exercise.component";
 import {LoginComponent} from "./login/login.component";
-import {WelcomeComponent} from "./welcome/welcome.component"
+import {WelcomeComponent} from "./welcome/welcome.component";
 import {LoginGuard} from "./services/login-guard.service";
 import {DirtyFormGuard} from "./services/dirty-form-guard.service";
+import {CustomPreloadingStrategy} from "./app.preloading";
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
+  // {
+  //   path: "room/:id",
+  //   loadChildren: "./rooms/rooms.module",
+  //   data: { preload: true }
+  // },
   {
     path: "",
     component: WelcomeComponent
@@ -28,11 +34,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports : [ RouterModule.forRoot(routes) ],
+  imports : [ RouterModule.forRoot(routes, {preloadingStrategy: CustomPreloadingStrategy}) ],
   exports : [ RouterModule ],
   providers: [
     LoginGuard,
-    DirtyFormGuard
+    DirtyFormGuard,
+    CustomPreloadingStrategy
   ]
 })
 

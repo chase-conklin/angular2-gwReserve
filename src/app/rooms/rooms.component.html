@@ -1,14 +1,14 @@
-<div class="ui room container">
+<div class="ui room container" [@onLoad]="state">
   <div class="ui inverted active dimmer" *ngIf="isLoading">
     <div class="ui big loader"></div>
   </div>
-  <div class="ui padded grid" [ngClass]="{ tranIn : room.picture !== '' }">
+  <div class="ui padded grid">
     <div class="row">
       <div class="six wide column">
         <img class="ui medium centered image" [src]="room.picture">
       </div>
       <div class="ten wide column toggleButtons">
-        <div class="ui buttons">
+        <div class="ui buttons" [@rightAfterOnLoad]="state">
           <button class="ui big button"
                   routerLink="./list"
                   routerLinkActive="green">List</button>
